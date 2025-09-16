@@ -172,4 +172,4 @@ function DashboardCharts({ selectedRegion, selectedProduct, dateRange }: Dashboa
   );
 }
 
-export default DashboardCharts;
+export default Dashboard;
