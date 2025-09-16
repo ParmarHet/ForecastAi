@@ -3,7 +3,7 @@ import DashboardCharts from '../components/DashboardCharts';
 import MetricsCard from '../components/MetricsCard';
 import { Download, Filter, Calendar, MapPin, Package } from 'lucide-react';
 
-function Dashboard() {
+const Dashboard: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState('all');
   const [dateRange, setDateRange] = useState('30d');
@@ -128,6 +128,6 @@ function Dashboard() {
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;
