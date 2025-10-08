@@ -20,20 +20,44 @@ interface DashboardChartsProps {
   selectedProduct: string;
   selectedCategory: string;
   selectedDiscount: string;
-  dateRange: string;
+  predictionRange: string;
 }
 
-function DashboardCharts({ selectedCity, selectedProduct, selectedCategory, selectedDiscount, dateRange }: DashboardChartsProps) {
-  // Sample forecast data
-  const forecastData = [
-    { date: '2024-01', actual: 450, predicted: 442, confidence: 95 },
-    { date: '2024-02', actual: 520, predicted: 518, confidence: 94 },
-    { date: '2024-03', actual: 580, predicted: 575, confidence: 96 },
-    { date: '2024-04', actual: 620, predicted: 615, confidence: 93 },
-    { date: '2024-05', actual: null, predicted: 680, confidence: 91 },
-    { date: '2024-06', actual: null, predicted: 720, confidence: 89 },
-    { date: '2024-07', actual: null, predicted: 765, confidence: 87 }
-  ];
+function DashboardCharts({ selectedCity, selectedProduct, selectedCategory, selectedDiscount, predictionRange }: DashboardChartsProps) {
+  const generateForecastData = () => {
+    const today = new Date();
+    const months = predictionRange === '1m' ? 4 : predictionRange === '3m' ? 6 : predictionRange === '6m' ? 9 : 15;
+    const predictionMonths = predictionRange === '1m' ? 1 : predictionRange === '3m' ? 3 : predictionRange === '6m' ? 6 : 12;
+
+    const data = [];
+    for (let i = -(months - predictionMonths - 1); i <= predictionMonths; i++) {
+      const date = new Date(today);
+      date.setMonth(date.getMonth() + i);
+      const monthStr = date.toISOString().slice(0, 7);
+
+      const baseValue = 500 + Math.sin(i / 2) * 100;
+      const growth = i * 20;
+
+      if (i <= 0) {
+        data.push({
+          date: monthStr,
+          actual: Math.round(baseValue + growth + (Math.random() * 40 - 20)),
+          predicted: Math.round(baseValue + growth),
+          confidence: 95 - Math.abs(i)
+        });
+      } else {
+        data.push({
+          date: monthStr,
+          actual: null,
+          predicted: Math.round(baseValue + growth),
+          confidence: Math.max(85, 95 - i * 2)
+        });
+      }
+    }
+    return data;
+  };
+
+  const forecastData = generateForecastData();
 
   const cityData = [
     { city: 'New York', demand: 1250, forecast: 1320 },

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import DashboardCharts from '../components/DashboardCharts';
-import { Download, Filter, Calendar, MapPin, Package, Percent, AlertTriangle } from 'lucide-react';
+import { Download, Filter, TrendingUp, MapPin, Package, Percent, AlertTriangle } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedDiscount, setSelectedDiscount] = useState('all');
-  const [dateRange, setDateRange] = useState('30d');
-  const [hasUploadedData, setHasUploadedData] = useState(false); // Simulate user data status
+  const [predictionRange, setPredictionRange] = useState('1m');
+  const [hasUploadedData, setHasUploadedData] = useState(false);
 
   const cities = ['all', 'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
   const products = ['all', 'Product A', 'Product B', 'Product C', 'Product D'];
@@ -90,18 +90,18 @@ const Dashboard: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    Date Range
+                    <TrendingUp className="h-4 w-4 mr-1" />
+                    Prediction Range
                   </label>
                   <select
-                    value={dateRange}
-                    onChange={(e) => setDateRange(e.target.value)}
+                    value={predictionRange}
+                    onChange={(e) => setPredictionRange(e.target.value)}
                     className="w-full p-3 bg-slate-700/50 border border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                   >
-                    <option value="7d">Last 7 days</option>
-                    <option value="30d">Last 30 days</option>
-                    <option value="90d">Last 90 days</option>
-                    <option value="1y">Last year</option>
+                    <option value="1m">Next 1 Month</option>
+                    <option value="3m">Next 3 Months</option>
+                    <option value="6m">Next 6 Months</option>
+                    <option value="1y">Next 1 Year</option>
                   </select>
                 </div>
                 <div>
@@ -177,12 +177,12 @@ const Dashboard: React.FC = () => {
 
             {/* Charts */}
             <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-              <DashboardCharts 
+              <DashboardCharts
                 selectedCity={selectedCity}
                 selectedProduct={selectedProduct}
                 selectedCategory={selectedCategory}
                 selectedDiscount={selectedDiscount}
-                dateRange={dateRange}
+                predictionRange={predictionRange}
               />
             </div>
           </>
