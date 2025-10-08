@@ -9,19 +9,21 @@ function Navbar() {
   const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/upload', label: 'Upload Data' },
     { path: '/login', label: 'Login' }
   ];
 
   return (
-    <nav className="bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-700/50 sticky top-0 z-50">
+    <nav className="bg-slate-900 shadow-lg border-b border-slate-700 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="p-2 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-xl group-hover:shadow-lg transition-all duration-300">
+            <div className="p-2 bg-blue-600 rounded-xl group-hover:shadow-lg transition-all duration-300">
               <BarChart3 className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-white">
               ForecastAI
             </span>
           </Link>

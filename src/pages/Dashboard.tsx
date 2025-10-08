@@ -75,7 +75,7 @@ const Dashboard: React.FC = () => {
                 onClick={() => setHasUploadedData(true)}
                 className="border-2 border-slate-600 text-slate-300 px-8 py-3 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-400 transition-all duration-300"
               >
-                View Demo Data
+                Load Sample Data
               </button>
             </div>
           </div>
