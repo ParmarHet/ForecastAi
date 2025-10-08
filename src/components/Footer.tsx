@@ -12,7 +12,7 @@ function Footer() {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="p-2 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-xl">
+              <div className="p-2 bg-blue-600 rounded-xl">
                 <BarChart3 className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold">ForecastAI</span>

@@ -173,9 +173,9 @@ function UploadCard() {
           {!isProcessing && (
             <button
               onClick={handleUpload}
-              className="w-full bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center space-x-2 pulse-glow"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center space-x-2"
             >
-              <TrendingUp className="h-5 w-5" />
+              <Upload className="h-5 w-5" />
               <span>Generate Forecast</span>
             </button>
           )}
