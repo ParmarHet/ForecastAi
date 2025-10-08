@@ -6,11 +6,12 @@ import LandingPage from './pages/LandingPage';
 import UploadPage from './pages/UploadPage';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col">
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -18,6 +19,7 @@ function App() {
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
           </Routes>
         </main>
         <Footer />

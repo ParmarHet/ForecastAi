@@ -16,12 +16,14 @@ import {
 } from 'recharts';
 
 interface DashboardChartsProps {
-  selectedRegion: string;
+  selectedCity: string;
   selectedProduct: string;
+  selectedCategory: string;
+  selectedDiscount: string;
   dateRange: string;
 }
 
-function DashboardCharts({ selectedRegion, selectedProduct, dateRange }: DashboardChartsProps) {
+function DashboardCharts({ selectedCity, selectedProduct, selectedCategory, selectedDiscount, dateRange }: DashboardChartsProps) {
   // Sample forecast data
   const forecastData = [
     { date: '2024-01', actual: 450, predicted: 442, confidence: 95 },
@@ -33,48 +35,50 @@ function DashboardCharts({ selectedRegion, selectedProduct, dateRange }: Dashboa
     { date: '2024-07', actual: null, predicted: 765, confidence: 87 }
   ];
 
-  const regionData = [
-    { region: 'North', demand: 1250, forecast: 1320 },
-    { region: 'South', demand: 980, forecast: 1050 },
-    { region: 'East', demand: 1180, forecast: 1240 },
-    { region: 'West', demand: 860, forecast: 920 }
+  const cityData = [
+    { city: 'New York', demand: 1250, forecast: 1320 },
+    { city: 'Los Angeles', demand: 980, forecast: 1050 },
+    { city: 'Chicago', demand: 1180, forecast: 1240 },
+    { city: 'Houston', demand: 860, forecast: 920 },
+    { city: 'Phoenix', demand: 740, forecast: 810 }
   ];
 
-  const productData = [
-    { name: 'Product A', value: 35, color: '#3B82F6' },
-    { name: 'Product B', value: 28, color: '#10B981' },
-    { name: 'Product C', value: 22, color: '#8B5CF6' },
-    { name: 'Product D', value: 15, color: '#F59E0B' }
+  const categoryData = [
+    { name: 'Electronics', value: 35, color: '#3B82F6' },
+    { name: 'Clothing', value: 28, color: '#10B981' },
+    { name: 'Home', value: 22, color: '#8B5CF6' },
+    { name: 'Sports', value: 15, color: '#F59E0B' }
   ];
 
   return (
     <div className="space-y-8">
       {/* Main Forecast Chart */}
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-100 p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-6">Actual vs Predicted Demand</h3>
+      <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-700/50 p-6">
+        <h3 className="text-xl font-bold text-white mb-6">Actual vs Predicted Demand</h3>
         <div className="h-96">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={forecastData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
               <XAxis 
                 dataKey="date" 
-                stroke="#6B7280"
+                stroke="#94A3B8"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
               />
               <YAxis 
-                stroke="#6B7280"
+                stroke="#94A3B8"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
               />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'white', 
-                  border: '1px solid #E5E7EB',
+                  backgroundColor: '#1e293b', 
+                  border: '1px solid #475569',
                   borderRadius: '12px',
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                  color: '#e2e8f0'
                 }}
               />
               <Legend />
@@ -101,32 +105,33 @@ function DashboardCharts({ selectedRegion, selectedProduct, dateRange }: Dashboa
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        {/* Regional Demand Chart */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-100 p-6">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Demand by Region</h3>
+        {/* City Demand Chart */}
+        <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-700/50 p-6">
+          <h3 className="text-xl font-bold text-white mb-6">Demand by City</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={regionData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+              <BarChart data={cityData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
                 <XAxis 
-                  dataKey="region" 
-                  stroke="#6B7280"
+                  dataKey="city" 
+                  stroke="#94A3B8"
                   fontSize={12}
                   tickLine={false}
                   axisLine={false}
                 />
                 <YAxis 
-                  stroke="#6B7280"
+                  stroke="#94A3B8"
                   fontSize={12}
                   tickLine={false}
                   axisLine={false}
                 />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: 'white', 
-                    border: '1px solid #E5E7EB',
+                    backgroundColor: '#1e293b', 
+                    border: '1px solid #475569',
                     borderRadius: '12px',
-                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    color: '#e2e8f0'
                   }}
                 />
                 <Legend />
@@ -137,30 +142,31 @@ function DashboardCharts({ selectedRegion, selectedProduct, dateRange }: Dashboa
           </div>
         </div>
 
-        {/* Product Distribution */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-100 p-6">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Product Distribution</h3>
+        {/* Category Distribution */}
+        <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl shadow-xl border border-slate-700/50 p-6">
+          <h3 className="text-xl font-bold text-white mb-6">Category Distribution</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
-                  data={productData}
+                  data={categoryData}
                   cx="50%"
                   cy="50%"
                   outerRadius={100}
                   dataKey="value"
                   label={({ name, value }) => `${name}: ${value}%`}
                 >
-                  {productData.map((entry, index) => (
+                  {categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: 'white', 
-                    border: '1px solid #E5E7EB',
+                    backgroundColor: '#1e293b', 
+                    border: '1px solid #475569',
                     borderRadius: '12px',
-                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    color: '#e2e8f0'
                   }}
                 />
               </PieChart>
